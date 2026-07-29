@@ -1,0 +1,27 @@
+import canonicalLaneMathlib.AdmissibleClass
+import DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean.CanonicalEnsembleEquilibrium
+import DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean.GibbsMeasureBridge
+import DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean.NeymanPearsonLemma
+import DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean.MLEAsymptoticNormality
+import DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean.ExponentialFamilyClosure
+import DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean.SufficiencyReduction
+
+namespace HautevilleHouse
+namespace DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean
+
+open HautevilleHouse.CanonicalLaneMathlibCore
+
+structure AdmissibleClass where
+  object : AdmittedObject
+  endpointSatisfied : Prop
+  remainderRecorded : Prop
+  gateWitness : endpointSatisfied ∨ remainderRecorded
+
+def ConstrainedStatisticalClosure (A : AdmissibleClass) : Prop :=
+  bridgeClosed A ∧ gateClosed A
+
+theorem constrained_statistical_endgame (A : AdmissibleClass) : ConstrainedStatisticalClosure A := by
+  exact And.intro (bridge_from_admissible_class A) (gate_from_admissible_class A)
+
+end DynamicalAspectsStatisticalMechanicsFoundationCanonicalLaneLean
+end HautevilleHouse
